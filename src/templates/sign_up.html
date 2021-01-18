@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign up page</title>
+    <style>
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+        }
+        label {
+            position: center;
+            font-size: 13px;
+            font-family: "Helvetica", sans-serif;
+            padding: 5% 5% 5% 2%;
+        }
+        input[type=text],[type=password] {
+            position: center;
+            margin-top: -30%;
+            margin-left: 45%;
+            padding: 5% 5% 5% 2%;
+        }
+        .Button-submit {
+            position: relative;
+            size: A3;
+        }
+    </style>
+</head>
+<body>
+    <div class="Signup-form">
+        <form method="POST" action="sign_up">
+            <div class="container">
+                <div class="Input-user">
+                    <label>
+                        Username :
+                        <input id="User" name="username" type="text" placeholder="" required="" value="">
+                    </label>
+                </div>
+
+                <br>
+
+                <div class="Input-email">
+                    <label>
+                        Email :
+                        <input id="Email" name="email" type="text" placeholder="" required="" value="">
+                    </label>
+                </div>
+
+                <br>
+
+                <div class="Input-password">
+                    <label>
+                        Password :
+                        <input id="Password" name="password" type="password" placeholder="" required="" value="">
+                    </label>
+                </div>
+
+                <br>
+
+                <div class="Input-r_password">
+                    <label>
+                        Repeat password :
+                        <input id="R_password" name="r_password" type="password" placeholder="" required="" value="">
+                    </label>
+                </div>
+
+                <br>
+
+                <div class="Button-submit">
+                    <button id="Submit" name="submit" type="submit"> Sing up </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
