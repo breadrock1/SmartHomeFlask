@@ -1,0 +1,48 @@
+/* Боковое навигационное меню */
+aside {
+    position: fixed;
+    text-align: center;
+    width: 15%;
+    height: 92%;
+    float: right;
+    font-style: italic;
+    background-color: #fff293;
+    border: 2px solid black;
+}
+
+header {
+    padding: 40px;
+    text-align: center;
+    top: 0;
+    background-color: #f8d192;
+    border: 2px solid black;
+}
+
+footer {
+    position: fixed;
+    text-align: center;
+    left: 0;
+    bottom: 1%;
+    width: 100%;
+    border: 2px solid black;
+}
+
+/* Сайдбар ссылки */
+.navigator a {
+    display: block;
+    color: black;
+    padding: 16px;
+    text-decoration: none;
+}
+
+div.container {
+    margin-left: 200px;
+    padding: 1px 16px;
+    height: 1000px;
+}
+
+div.container-left.logotipe {
+    position: fixed;
+    top: 0;
+    left: 0;
+}
