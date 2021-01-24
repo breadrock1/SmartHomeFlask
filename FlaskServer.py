@@ -22,7 +22,7 @@ def loadJsonData(data) -> json:
 
 
 @app.route('/')
-@app.route('/index')
+@app.route('/index', methods=['GET'])
 def index():
     return render_template('index.html')
 
@@ -68,7 +68,7 @@ def sign_up():
 
 
 @app.route('/login', methods=['GET', 'POST'])
-def sign_in():
+def login():
     if request.method == 'GET':
         return render_template('sign_in.html')
 
@@ -100,19 +100,81 @@ def sign_in():
     abort(405)
 
 
-@app.route('/logout')
+@app.route('/logout', methods=['GET'])
 def logout():
+    # TODO: Does it need?
     pass
 
 
-@app.route('/get_apikey')
+@app.route('/get_apikey', methods=['GET', 'POST'])
 def get_apikey():
-    pass
+    if request.method == 'GET':
+        return render_template('sign_in.html')
+
+    if request.method == 'POST':
+        if request.form:
+            try:
+                username = request.form.get('user')
+                password = request.form.get('password')
+
+            except Exception as e:
+                print(f'[-]\tFailed to get credentials from post-form. Error: {e}')
+                return {'result': -1, 'message': e}
+
+        else:
+            data = request.get_data().decode('UTF-8')
+            json_data = loadJsonData(data)
+
+            try:
+                username = json_data.get('username')
+                password = json_data.get('password')
+
+            except KeyError as e:
+                print(f'[-]\tFailed to get credentials from post-request. Error: {e}')
+                return {'result': -1, 'message': e}
+
+        database = Database()
+        database.get_api_key(user=username, passwd=password)
+
+    abort(405)
 
 
-@app.route('/reset_apikey')
+
+@app.route('/reset_apikey', methods=['GET', 'POST'])
 def reset_apikey():
-    pass
+    if request.method == 'GET':
+        return render_template('sign_up.html')
+
+    if request.method == 'POST':
+        if request.form:
+            try:
+                username = request.form.get('user')
+                apikey = request.form.get('apikey')
+                password = request.form.get('password')
+                r_password = request.form.get('r_password')
+
+            except Exception as e:
+                print(f'[-]\tFailed to get credentials from post-form. Error: {e}')
+                return {'result': -1, 'message': e}
+
+        else:
+            data = request.get_data().decode('UTF-8')
+            json_data = loadJsonData(data)
+
+            try:
+                username = json_data.get('username')
+                apikey = json_data.get('apikey')
+                password = json_data.get('password')
+                r_password = json_data.get('r_password')
+
+            except KeyError as e:
+                print(f'[-]\tFailed to get credentials from post-request. Error: {e}')
+                return {'result': -1, 'message': e}
+
+        database = Database()
+        database.reset_api_key(user=username, apikey=apikey, passwd=password)
+
+    abort(405)
 
 
 '''
